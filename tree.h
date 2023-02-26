@@ -27,6 +27,6 @@ int queue_size(queue_t *);
 
 
 node_t *import_tree(FILE *);
-void print_tree(node_t *);
+void print_tree(node_t *, int);
 void print_node(node_t *, int);
 

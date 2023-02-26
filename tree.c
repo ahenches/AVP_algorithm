@@ -45,7 +45,7 @@ node_t *import_tree(FILE *f)
 	return tab_node[0];
 }
 
-void print_tree(node_t *racine)
+/*void print_tree(node_t *racine)
 {
 	printf("AFFICHAGE arbre\n");
 	queue_t *q = init_queue();
@@ -59,8 +59,15 @@ void print_tree(node_t *racine)
 		for(int i = 0; i < actual->n_children; i++)
 			enqueue(q, actual->childs[i], hauteur+1);
 	}
-	//print_tree_rec(racine, 0);
 	printf("\n");
+}*/
+
+void print_tree(node_t *node, int h) // algo rec.
+{
+	print_node(node, h);
+	h++;
+	for(int i = 0; i < node->n_children; i++)
+		print_tree(node->childs[i], h);
 }
 
 void print_node(node_t *node, int hauteur)

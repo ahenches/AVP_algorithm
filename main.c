@@ -39,7 +39,7 @@ int main()
 	node_t *racine = import_tree(ptr);
 	fclose(ptr);
 	
-	print_tree(racine);
+	print_tree(racine, 0);
 	
 /*
 	node_t rac1;
