@@ -2,7 +2,7 @@
 
 int main()
 {
-	
+/*	
 	node_t rac;
 	rac.value = 5;
 	rac.childs = malloc(sizeof(node_t *)*2);
@@ -30,19 +30,24 @@ int main()
 	n0.childs[1] = &n3;
 	
 	print_tree(&rac);
+*/
+	FILE *ptr = fopen("arbre1", "r");
+	if (NULL == ptr) {
+		printf("file can't be opened \n");
+	}
 
-
-	node_t *racine = import_tree("arbre1");
+	node_t *racine = import_tree(ptr);
+	fclose(ptr);
 	
 	print_tree(racine);
 	
-
+/*
 	node_t rac1;
 	rac1.value = 5;
 	queue_t *q = init_queue();
 	enqueue(q, &rac1, 0);
 	int h;
 	printf("%d\n", dequeue(q, &h)->value);
-
+*/
 	return 0;
 }

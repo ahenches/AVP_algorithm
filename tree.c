@@ -1,15 +1,10 @@
 #include "tree.h"
 
-node_t *import_tree(char *filename)
+node_t *import_tree(FILE *f)
 {
-	FILE *ptr;
 	char line[MAX_CARACTERE_PAR_LIGNE];
 
 	// INITIALIZE AFN
-	ptr = fopen(filename, "r");
-	if (NULL == ptr) {
-		printf("file can't be opened \n");
-	}
 
 	node_t *tab_node[MAX_TAILLE_TREE];
 
@@ -17,22 +12,25 @@ node_t *import_tree(char *filename)
 	int size_tab_children = 0;
 
 	// Lecture du nombre d'états finals	
-	char delim[] = " ";
+	char delim_children[] = " ";
+	tab_node[0] = malloc(sizeof(node_t)); // ligne 0 est tjrs la racine
 	int index_node = 0;
-	while(fgets(line, MAX_CARACTERE_PAR_LIGNE, ptr) != NULL)
+	while(fgets(line, MAX_CARACTERE_PAR_LIGNE, f) != NULL)
 	{
-		printf("%s", line);
-		char *res = strtok(line, delim);
-		tab_node[index_node] = malloc(sizeof(node_t));
-		tab_node[index_node]->value = atoi(res);
-		res = strtok(NULL, delim);
+		line[strlen(line)-1] = '\0';
+		printf("%s\n", line);
+		char *res = strtok(line, ":");
+		tab_node[index_node]->value = atoi(res); // Return Segfault si pas bon fichier
+		res = strtok(NULL, delim_children);
 		size_tab_children = 0;
 		while (res != NULL)
 		{
-			printf("%d\n", atoi(res));
-			tab_children[size_tab_children] = atoi(res);
+			int i_res = atoi(res);
+			printf("%d\n", i_res);
+			tab_children[size_tab_children] = i_res;
+			tab_node[i_res] = malloc(sizeof(node_t));
 			size_tab_children++;
-			res = strtok(NULL, delim);
+			res = strtok(NULL, delim_children);
 		}
 		printf("TAILLEFILS %d\n", size_tab_children);
 		tab_node[index_node]->n_children = size_tab_children;
