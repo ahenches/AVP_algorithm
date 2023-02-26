@@ -1,21 +1,17 @@
 #include "tree.h"
 
-node_t *import_tree(FILE *f)
+node_t **import_tree(FILE *f)
 {
-	char line[MAX_CARACTERE_PAR_LIGNE];
+	char line[MAX_CHARACTERE_BY_LINE];
+	node_t **tab_node = malloc (MAX_SIZE_TREE*sizeof(node_t *));
 
-	// INITIALIZE AFN
-
-	node_t *tab_node[MAX_TAILLE_TREE];
-
-	int tab_children[MAX_TAILLE_TREE-1];
+	int tab_children[MAX_SIZE_TREE-1];
 	int size_tab_children = 0;
 
-	// Lecture du nombre d'états finals	
 	char delim_children[] = " ";
 	tab_node[0] = malloc(sizeof(node_t)); // ligne 0 est tjrs la racine
 	int index_node = 0;
-	while(fgets(line, MAX_CARACTERE_PAR_LIGNE, f) != NULL)
+	while(fgets(line, MAX_CHARACTERE_BY_LINE, f) != NULL)
 	{
 		line[strlen(line)-1] = '\0';
 		printf("%s\n", line);
@@ -42,7 +38,7 @@ node_t *import_tree(FILE *f)
 		index_node++;
 	}
 	printf("%d\n", tab_node[1]->value);
-	return tab_node[0];
+	return tab_node;
 }
 
 void print_tree(node_t *node, int h) // algo rec.

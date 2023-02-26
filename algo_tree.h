@@ -3,5 +3,6 @@
 
 int add_recursive(node_t *);
 int add_derecursivation(node_t *);
-int add_profondeur(node_t *);
+int add_trivial_derecursivation(node_t *);
+int add_largeur(node_t *);
 
