@@ -13,7 +13,8 @@ int main()
 	print_tree(racine, 0);
 
 	int total = add_profondeur(racine);
-
+	printf("%d\n", total);
+	total = add_recursive(racine);
 	printf("%d\n", total);
 	
 	return 0;

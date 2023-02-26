@@ -16,5 +16,12 @@ int add_profondeur(node_t *racine)
 	}
 	return total;
 }
-int add_recursive(node_t *);
+int add_recursive(node_t *node)
+{
+	int total_node = node->value;
+	print_node(node, 0);
+	for(int i = 0; i < node->n_children; i++)
+		total_node += add_recursive(node->childs[i]);
+	return total_node;
+}
 int add_derecursivation(node_t *);
